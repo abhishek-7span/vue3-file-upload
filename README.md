@@ -92,20 +92,54 @@ export default {
 
 ## Props
 
-| Prop               | Type                        | Default | Description                                                                    |
-| ------------------ | --------------------------- | ------- | ------------------------------------------------------------------------------ | ------------------ |
-| `multiple`         | `Boolean`                   | `false` | Allow multiple file selection.                                                 |
-| `maxFileSize`      | `Number`                    | `0`     | Maximum allowed size per file in bytes (0 for no limit).                       |
-| `maxTotalSize`     | `Number`                    | `0`     | Maximum allowed total size for all files in bytes (0 for no limit).            |
-| `maxFiles`         | `Number`                    | `0`     | Maximum number of files allowed (0 for no limit).                              |
-| `allowedTypes`     | `Array<string>`             | `[]`    | Array of allowed file extensions (e.g., `['.jpg', '.png']`). Case-insensitive. |
-| `allowedMimeTypes` | `Array<string>`             | `[]`    | Array of allowed MIME types (e.g., `['image/jpeg', 'image/png']`).             |
-| `validateFile`     | `Function`                  | `null`  | Custom validation function `(file: File) => boolean                            | Promise<boolean>`. |
-| `uploadUrl`        | `String`                    |         | **Required**. The URL endpoint for file uploads.                               |
-| `uploaderClass`    | `String`, `Array`, `Object` | `''`    | Custom CSS class(es) for the main uploader container.                          |
-| `previewClass`     | `String`, `Array`, `Object` | `''`    | Custom CSS class(es) for the file previews container.                          |
-| `itemClass`        | `String`, `Array`, `Object` | `''`    | Custom CSS class(es) for each individual file item.                            |
-| `errorClass`       | `String`, `Array`, `Object` | `''`    | Custom CSS class(es) for the error messages container.                         |
+<dl>
+  <dt>`multiple`</dt>
+  <dd>Type: <code>Boolean</code>, Default: `false`</dd>
+  <dd>Allow multiple file selection.</dd>
+
+  <dt>`maxFileSize`</dt>
+  <dd>Type: <code>Number</code>, Default: `0`</dd>
+  <dd>Maximum allowed size per file in bytes (0 for no limit).</dd>
+
+  <dt>`maxTotalSize`</dt>
+  <dd>Type: <code>Number</code>, Default: `0`</dd>
+  <dd>Maximum allowed total size for all files in bytes (0 for no limit).</dd>
+
+  <dt>`maxFiles`</dt>
+  <dd>Type: <code>Number</code>, Default: `0`</dd>
+  <dd>Maximum number of files allowed (0 for no limit).</dd>
+
+  <dt>`allowedTypes`</dt>
+  <dd>Type: <code>Array<string></code>, Default: `[]`</dd>
+  <dd>Array of allowed file extensions (e.g., `['.jpg', '.png']`). Case-insensitive.</dd>
+
+  <dt>`allowedMimeTypes`</dt>
+  <dd>Type: <code>Array<string></code>, Default: `[]`</dd>
+  <dd>Array of allowed MIME types (e.g., `['image/jpeg', 'image/png']`).</dd>
+
+  <dt>`validateFile`</dt>
+  <dd>Type: <code>Function</code>, Default: `null`</dd>
+  <dd>Custom validation function `(file: File) => boolean | Promise<boolean>`.</dd>
+
+  <dt>`uploadUrl`</dt>
+  <dd>Type: <code>String</code>, Default: (None)</dd>
+  <dd><strong>Required</strong>. The URL endpoint for file uploads.</dd>
+
+  <dt>`uploaderClass`</dt>
+  <dd>Type: <code>String</code>, <code>Array</code>, <code>Object</code>, Default: `''`</dd>
+  <dd>Custom CSS class(es) for the main uploader container.</dd>
+
+  <dt>`previewClass`</dt>
+  <dd>Type: <code>String</code>, <code>Array</code>, <code>Object</code>, Default: `''`</dd>
+  <dd>Custom CSS class(es) for the file previews container.</dd>
+
+  <dt>`itemClass`</dt>
+  <dd>Type: <code>String</code>, <code>Array</code>, <code>Object</code>, Default: `''`</dd>
+  <dd>Custom CSS class(es) for each individual file item.</dd>
+
+  <dt>`errorClass`</dt>
+  <dd>Type: <code>String</code>, <code>Array</code>, <code>Object</code>, Default: `''`</dd>
+</dl>
 
 ## Events
 
