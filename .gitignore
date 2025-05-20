@@ -1,0 +1,29 @@
+# dependencies
+node_modules
+
+# build output
+dist
+
+# misc
+.DS_Store
+*.log
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# local development server
+.vite/
+
+# vitepress build output
+.vitepress/cache/
+.vitepress/dist/
+
+# cypress
+cypress/videos/
+cypress/screenshots/
+
+# playwright
+.playwright/
+playwright-report/

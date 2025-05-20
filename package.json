@@ -1,0 +1,22 @@
+{
+  "name": "vue3-file-upload",
+  "version": "0.1.0",
+  "description": "A Vue 3 component for handling file uploads.",
+  "main": "dist/vue3-file-upload.umd.js",
+  "module": "dist/vue3-file-upload.es.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.4.21"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "vite": "^5.2.0"
+  }
+}
