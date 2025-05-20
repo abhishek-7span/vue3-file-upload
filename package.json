@@ -1,6 +1,6 @@
 {
   "name": "vue3-file-upload",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A Vue 3 component for handling file uploads.",
   "main": "dist/vue3-file-upload.umd.js",
   "module": "dist/vue3-file-upload.es.js",
