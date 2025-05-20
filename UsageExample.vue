@@ -20,6 +20,8 @@
       previewClass="my-custom-preview-class"
       itemClass="my-custom-item-class"
       errorClass="my-custom-error-class"
+      :validateFile="customValidationExample"
+      ref="fileUploaderRef"
     />
 
     <div v-if="allSelectedFiles.length > 0" class="selected-files-list">
@@ -123,84 +125,14 @@ export default {
           (f) => f === file
         );
         if (fileIndexInSelected !== -1) {
-          // Call the uploadFile method exposed by the slot or component instance
-          // Note: If you need to call uploadFile from the parent,
-          // you'd need to expose it from the FileUploader component's setup return
-          // or use a ref to the FileUploader instance.
-          // For this example, we assume uploadFile is accessible via the slot scope
-          // or you'd trigger it differently (e.g., FileUploader could have an 'upload' method).
-          // Let's adjust FileUploader to expose an 'upload' method for simplicity here.
-          // **Correction:** The uploadFile function is passed via the slot scope.
-          // To trigger upload for all files from the parent, you'd need to iterate
-          // through the files and call uploadFile for each.
-          // A simpler approach for a parent-triggered upload is to have FileUploader
-          // expose a method like `startUploads()`. Let's assume that for now,
-          // or you can modify FileUploader to auto-upload on file selection.
-          // **Alternative (using slot scope if available):**
-          // If you were using the slot to render items and had access to uploadFile
-          // in the slot scope, you could call it there.
-          // Since we are triggering from the parent, let's assume FileUploader
-          // has a method to start uploads.
-          // **Let's modify FileUploader to expose a startUploads method.**
-          // (This requires a change in FileUploader.vue, which I cannot make directly now,
-          // but I'll write the parent code assuming such a method exists or you'll add it).
-          // **Assuming FileUploader has a `startUploads` method:**
-          // fileUploaderRef.value.startUploads();
-          // **Assuming we call uploadFile for each file (less ideal for batch control):**
-          // This requires the parent to know the index and have access to the upload logic.
-          // The current FileUploader exposes `uploadFile` via the slot, not directly
-          // to the parent component instance.
-          // To make this work easily from the parent, FileUploader should expose
-          // a method like `uploadFileByIndex(index)` or `uploadAllPending()`.
-          // **Let's simulate calling upload for each file using the exposed uploadFile from setup**
-          // This requires passing the actual file object and its index within the *current*
-          // selectedFiles array of the FileUploader component. This is tricky from the parent.
-          // **Simplest approach for this example:** Assume FileUploader auto-uploads or
-          // has a single button inside it to trigger upload. Or, modify FileUploader
-          // to expose a method to the parent.
-          // **Let's revert to the idea that the parent triggers upload using the exposed uploadFile from the slot scope.**
-          // This means the upload button should ideally be *inside* the slot, or the parent
-          // needs a way to access the uploadFile function for each file.
-          // **Let's adjust the example to show how you *would* call uploadFile if it were exposed**
-          // **or if you were using the slot scope.**
-          // **Option 1: FileUploader exposes a method (requires change in FileUploader)**
-          // const fileUploaderRef = ref(null);
-          // onMounted(() => { fileUploaderRef.value.startUploads(); }); // Example call
-          // **Option 2: Call uploadFile for each file (requires access to the function and index)**
-          // This is the most direct way given the current FileUploader structure exposing `uploadFile` via slot.
-          // However, calling it from a single parent button requires iterating the parent's list
-          // and finding the corresponding index in the child's list, which is complex.
-          // **Let's simplify the example:** The upload button will be shown here, but
-          // the actual call to `uploadFile` would need to be handled by the FileUploader
-          // itself, perhaps via an internal "Upload All" button or auto-upload logic.
-          // Or, FileUploader could expose a method like `uploadFile(fileObject)` that the parent calls.
-          // **Let's assume FileUploader exposes `uploadFile(fileObject)` directly.**
-          // This requires adding `uploadFile` to the `return` object in FileUploader's setup.
-          // (I'll add this to the FileUploader code in the previous turn if needed, but for now,
-          // let's write the parent code assuming it's available).
-          // **Assuming `uploadFile` is exposed directly by FileUploader:**
-          // fileUploaderRef.value.uploadFile(file); // This would be the call
-          // **Given the current FileUploader code exposes `uploadFile` via the slot,**
-          // **the most practical way to trigger upload from the parent is to iterate**
-          // **the parent's `allSelectedFiles` list and find the corresponding file**
-          // **in the child's internal list to get the correct index.**
-          // **This is cumbersome. A better pattern is for the child to expose a method**
-          // **to upload a specific file object or all pending files.**
-          // **Let's modify the FileUploader component to expose `uploadFile` directly.**
-          // (I will include this change in the FileUploader code block below).
-          // **After modifying FileUploader to expose `uploadFile`:**
-          // Find the file object in the child's `selectedFiles` array to get its index
-          // This is still not ideal. The child should manage its own upload queue.
-          // **Let's go back to the simplest approach for the example:**
-          // The parent component will just display the files and their status/progress
-          // as reported by the FileUploader's events. The actual upload initiation
-          // will be handled *within* the FileUploader component itself (e.g., auto-upload
-          // after selection, or an internal upload button per file/for all).
-          // The "Upload All Files" button in this parent example will be illustrative
-          // but won't directly call the child's upload logic without further changes
-          // to how the child exposes methods or handles upload initiation.
-          // **Let's remove the parent "Upload All Files" button for now to avoid confusion**
-          // **and focus on demonstrating event handling.**
+          // Call the exposed uploadFile method on the FileUploader instance
+          if (fileUploaderRef.value && fileUploaderRef.value.uploadFile) {
+            fileUploaderRef.value.uploadFile(file);
+          } else {
+            console.error(
+              "FileUploader component or uploadFile method not available."
+            );
+          }
         }
       }
       // isUploading.value = false; // Set to false when all uploads are initiated (not necessarily finished)
