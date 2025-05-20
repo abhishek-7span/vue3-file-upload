@@ -15,7 +15,11 @@ A Vue 3 component for handling file uploads with features like previews, validat
 
 ## Installation
 
-Assuming you have a Vue 3 project set up, you can integrate the component by copying the `FileUploader.vue` file into your project.
+Install the package using npm:
+
+```bash
+npm install vue3-file-upload
+```
 
 ## Usage
 
@@ -36,7 +40,7 @@ Import and use the component in your Vue files:
 </template>
 
 <script>
-import FileUploader from "./path/to/FileUploader.vue"; // Adjust the path
+import FileUploader from "vue3-file-upload";
 
 export default {
   components: {
